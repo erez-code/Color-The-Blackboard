@@ -1,0 +1,64 @@
+#logo {
+	border-right: solid black 1px;
+    padding:0px 10px 0px 0px;
+}
+.wrap {
+    width: 80%;
+    height: 1000px;
+    background: black;
+    margin:0px 0px 150px 0px;
+    padding:0px 0px 0px 0px;
+    border: 2px black solid;
+}
+
+.content {
+    float:left;
+    width:2.5%;
+    height:5%;
+    color: yellow;
+    background: black;
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+ }
+
+#drawing {
+	background:rgb(0, 191, 255);
+}
+
+h1 {
+	color: black;
+	background-color: white;
+	text-align: center;
+    margin:0px 0px 10px 0px;
+    padding: 15px 0px 10px 0px;
+    border-bottom: 1px solid lightgray;	
+}
+
+li {
+	color: black;
+	padding: 0 0 10px 0;
+    margin:0px 0px 0px 10%;
+	font-size: 125%;
+}
+
+body {
+	background-color: rgb(234, 236, 239);
+	font-family: Open Sans;
+	height: 100%;
+    overflow: auto;
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+
+}
+
+#pagebottom {
+	color: black;
+	height: 50px;
+	background-color: white;
+	text-align: center;
+    margin:0px 0px 10px 0px;
+    padding: 15px 0px 10px 0px;
+    border-top: 1px solid lightgray;
+    bottom: 0px;
+    width: 100%;
+}
