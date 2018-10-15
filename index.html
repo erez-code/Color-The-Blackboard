@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html ng-app>
 <head>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">	
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,700" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="coloreverything.css">
@@ -12,7 +13,7 @@
 
 <ul>
 	<li>Click the blackboard below to start coloring! You can draw fun shapes!</li>
-	<li>Pick a color: <input type="color" value="#2098df" id="colorWell"></li>
+	<li>Wanna know a color's HEX code? pick a color: <input type="color" value="#2098df" id="colorWell" ng-model="whichcolor">  {{ whichcolor }}</li>
 	<li>Click again to erase a square.</li>
 </ul>
 <!-- <table>
