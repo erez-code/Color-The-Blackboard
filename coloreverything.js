@@ -1,4 +1,4 @@
-$(".content").click(function() {
+$(".wrap div").mousedown(function() {
 	if ($(this).css("background-color") == "rgb(0, 0, 0)") {
 		$(this).css("background-color", colorWell.value)} else {
   	$(this).css("background-color", "black")}})
