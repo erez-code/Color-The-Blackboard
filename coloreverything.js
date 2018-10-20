@@ -1,15 +1,14 @@
-$(".wrap div").mousedown(function() {
-	if ($(this).css("background-color") == "rgb(0, 0, 0)") {
-		$(this).css("background-color", colorWell.value)} else {
-  	$(this).css("background-color", "black")}})
+$( '.wrap div' ).mousedown( function() {
+	var $this = $( this );
+	var isBlack = $this.css( 'background-color' ) === 'rgb(0, 0, 0)';
+	$this.css( 'background-color', isBlack? colorSelect.value: 'black' );
+} );
 
-var colorWell;
+var colorSelect;
 var defaultColor = "#2098df";
 
-window.addEventListener("load", startup, false);
-
-function startup() {
-  colorWell = document.querySelector("#colorWell");
-  colorWell.value = defaultColor;
-  colorWell.select();
-}
+$( function() {
+	colorSelect = $("#colorSelect")[0];
+	colorSelect.value = defaultColor;
+	colorSelect.select();
+} );
