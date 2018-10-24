@@ -16,10 +16,8 @@ $( function() {
 $("#clearcanvas").click(function(event)
   { 
     $(".wrap div").css("background-color", "black")
-  })
+});
 
-$("#randomcanvas").click(function(event)
-  { 
-    for (var i=0; i<4000; i++) {
-	$(".wrap div").eq(i).css("background-color", '#'+ Math.round(0xffffff * Math.random()).toString(16))}
-  })
+function randomColors() { return '#'+ Math.round( 0xffffff * Math.random() ).toString( 16 ) };
+
+$( '.wrap div' ).css( 'background-color', randomColors );
