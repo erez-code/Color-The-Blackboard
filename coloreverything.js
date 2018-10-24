@@ -15,7 +15,8 @@ $( function() {
 
 $("#clearcanvas").click(function(event)
   { 
-    $(".wrap div").removeAttr("style")
+    $(".wrap div").removeAttr("style");
+    $(".wrap div").text("")
 });
 
 function randomColors() { return '#'+ Math.round( 0xffffff * Math.random() ).toString( 16 ).padStart(6, '0') };
@@ -26,3 +27,11 @@ $("#randomcanvas").click(function(event)
     $(".wrap div").css("background-color", randomColors)
 });
 
+
+$( ".wrap div:odd" ).css("color", randomColors)
+
+$("#smileycanvas").click(function(event)
+  { 
+    $(".wrap div").css("color", randomColors);
+    $( ".wrap div:odd" ).text(":)");
+});
