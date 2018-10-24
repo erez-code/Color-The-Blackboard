@@ -1,7 +1,7 @@
 $( '.wrap div' ).mousedown( function() {
 	var $this = $( this );
 	var isBlack = $this.css( 'background-color' ) === 'rgb(0, 0, 0)';
-	$this.css( 'background-color', isBlack? colorSelect.value: '' );
+	isBlack? $this.css('background-color', colorSelect.value) : $this.removeAttr("style");
 } );
 
 var colorSelect;
