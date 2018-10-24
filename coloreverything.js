@@ -15,7 +15,7 @@ $( function() {
 
 $("#clearcanvas").click(function(event)
   { 
-    $(".wrap div").css("background-color", "")
+    $(".wrap div").removeAttr("style")
 });
 
 function randomColors() { return '#'+ Math.round( 0xffffff * Math.random() ).toString( 16 ) };
