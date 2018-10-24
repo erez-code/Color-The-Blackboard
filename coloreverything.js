@@ -20,4 +20,9 @@ $("#clearcanvas").click(function(event)
 
 function randomColors() { return '#'+ Math.round( 0xffffff * Math.random() ).toString( 16 ) };
 
-$( '.wrap div' ).css( 'background-color', randomColors );
+
+$("#randomcanvas").click(function(event)
+  { 
+    $(".wrap div").css("background-color", randomColors)
+});
+
