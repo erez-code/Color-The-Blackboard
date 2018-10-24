@@ -18,7 +18,7 @@ $("#clearcanvas").click(function(event)
     $(".wrap div").removeAttr("style")
 });
 
-function randomColors() { return '#'+ Math.round( 0xffffff * Math.random() ).toString( 16 ) };
+function randomColors() { return '#'+ Math.round( 0xffffff * Math.random() ).toString( 16 ).padStart(6, '0') };
 
 
 $("#randomcanvas").click(function(event)
