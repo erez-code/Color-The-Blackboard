@@ -32,6 +32,6 @@ $( ".wrap div:odd" ).css("color", randomColors)
 
 $("#smileycanvas").click(function(event)
   { 
-    $(".wrap div").css("color", randomColors);
-    $( ".wrap div:odd" ).text(":)");
+    $(".wrap div:odd").css("color", randomColors);
+    $(".wrap div:odd").text(":)");
 });
