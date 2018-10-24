@@ -1,7 +1,7 @@
 $( '.wrap div' ).mousedown( function() {
 	var $this = $( this );
 	var isBlack = $this.css( 'background-color' ) === 'rgb(0, 0, 0)';
-	$this.css( 'background-color', isBlack? colorSelect.value: 'black' );
+	$this.css( 'background-color', isBlack? colorSelect.value: '' );
 } );
 
 var colorSelect;
@@ -15,7 +15,7 @@ $( function() {
 
 $("#clearcanvas").click(function(event)
   { 
-    $(".wrap div").css("background-color", "black")
+    $(".wrap div").css("background-color", "")
 });
 
 function randomColors() { return '#'+ Math.round( 0xffffff * Math.random() ).toString( 16 ) };
