@@ -1,7 +1,9 @@
 $( '.wrap div' ).mousedown( function() {
-	var $this = $( this );
-	var isBlack = $this.css( 'background-color' ) === 'rgb(0, 0, 0)';
-	isBlack? $this.css('background-color', colorSelect.value) : $this.removeAttr("style");
+  var activeColor = $( '#colorindicator' );
+  activeColor.css("color", colorSelect.value);
+  var $this = $( this );
+	var isBlack = $this.css( 'background-color' ) === activeColor.css("color");
+	isBlack? $this.removeAttr("style") : $this.css('background-color', colorSelect.value);
 } );
 
 var colorSelect;
@@ -35,3 +37,4 @@ $("#smileycanvas").click(function(event)
     $(".wrap div:odd").css("color", randomColors);
     $(".wrap div:odd").text(":)");
 });
+
