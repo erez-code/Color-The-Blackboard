@@ -7,13 +7,15 @@ $( '.wrap div' ).mousedown( function() {
 } );
 
 var colorSelect;
-var defaultColor = "#2098df";
+var defaultColor = "#930024";
 
 $( function() {
 	colorSelect = $("#colorSelect")[0];
 	colorSelect.value = defaultColor;
 	colorSelect.select();
 } );
+
+$("#colorSelect").mouseout(function(event) {$("#logo").css("color", colorSelect.value)});
 
 $("#clearcanvas").click(function(event)
   { 
@@ -46,21 +48,21 @@ $("#smileycanvas").click(function(event)
 //hover draw testing
 //hover draw testing
 
+//check if hover mode is on//
+var hoverCheck = !hoverCheck;
+hoverCheck = !hoverCheck;
 
-// $('#hoverdrawing')[0].onclick = function() {$( '.hoverwrap .wrap div' ).hover( hoverfunction)};
 $('#hoverdrawing').click( function() {
-    $( '#hoverwrap' ).toggleClass( 'active' );
-    $( '.active .wrap div' ).hover( hoverfunction);
+    $( '.wrap div' ).hover( hoverfunction);
+    hoverCheck = !hoverCheck;
+});
+
+$("body").keyup(function(e) {
+  if (e.keyCode === 27 && hoverCheck) hoverCheck = !hoverCheck;
 });
 
 
-// function hoverfunction() {
-//     var $this = $( this );
-//   $this.css( 'background-color',colorSelect.value);
-// }
 function hoverfunction() {
     var $this = $( this );
-    if ( $( '#hoverwrap' ).is( '.active' ) ) $this.css( 'background-color',colorSelect.value);
+    if ( hoverCheck ) $this.css( 'background-color',colorSelect.value);
 }
-
-// $('#stophoverdrawing')[0].onclick = function() {$( '.hoverwrap' ).attr("class","not")}

@@ -1,6 +1,8 @@
 #logo {
 	border-right: solid black 1px;
     padding:0px 10px 0px 0px;
+    text-shadow: 0 0 3px black;
+    color: #930024;
 }
 .wrap {
     width: 1500px;
