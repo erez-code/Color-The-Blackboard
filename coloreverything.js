@@ -42,11 +42,25 @@ $("#smileycanvas").click(function(event)
     $(".wrap div:odd").text(":)");
 });
 
-$('#hoverdrawing')[0].onclick = function() {$( '.hoverwrap .wrap div' ).hover( hoverfunction)};
 
+//hover draw testing
+//hover draw testing
+
+
+// $('#hoverdrawing')[0].onclick = function() {$( '.hoverwrap .wrap div' ).hover( hoverfunction)};
+$('#hoverdrawing').click( function() {
+    $( '#hoverwrap' ).toggleClass( 'active' );
+    $( '.active .wrap div' ).hover( hoverfunction);
+});
+
+
+// function hoverfunction() {
+//     var $this = $( this );
+//   $this.css( 'background-color',colorSelect.value);
+// }
 function hoverfunction() {
     var $this = $( this );
-  $this.css( 'background-color',colorSelect.value);
+    if ( $( '#hoverwrap' ).is( '.active' ) ) $this.css( 'background-color',colorSelect.value);
 }
 
-$('#stophoverdrawing')[0].onclick = function() {$( '.hoverwrap' ).attr("class","shoverwrap")}
+// $('#stophoverdrawing')[0].onclick = function() {$( '.hoverwrap' ).attr("class","not")}
