@@ -21,11 +21,16 @@
     background: black;
     margin:0px 0px 0px 0px;
     padding:0px 0px 0px 0px;
-
- }
+    font-width: 1vmax ;
+}
 
 #drawing {
 	background:#2098df;
+}
+
+#personalised {
+    width:40px;
+
 }
 
 h1 {
