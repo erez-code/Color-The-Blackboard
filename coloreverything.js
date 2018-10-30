@@ -85,3 +85,5 @@ function hoverfunction() {
     var $this = $( this );
     if ( hoverCheck ) $this.css( 'background-color',colorSelect.value);
 }
+
+
