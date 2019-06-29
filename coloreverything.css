@@ -9,7 +9,21 @@ hr {
     height: 1px;
     border: 0;
 }
-button {
+
+.previouscolor {
+    cursor: pointer;
+    font-size: 16px;
+    height: 25px;
+    width: 50px;
+    font-family: Open Sans;
+    background-color: #930024;
+    border-bottom: 3px solid black;
+    border: 2px black solid;
+    color: black;
+    border-radius: 4px;
+}
+
+.button_green {
     cursor: pointer;
     font-size: 16px;
     font-family: Open Sans;
@@ -19,7 +33,8 @@ button {
     color: #fff;
     border-radius: 4px;
 }
-button:hover {
+
+.button_green:hover {
     background-color: #7abc01;
 }
 
@@ -77,9 +92,6 @@ li {
     margin:0px 0px 0px 10%;
 	font-size: 125%;
 }
-
-
-
 
 body {
 	background-color: #fafafa;
