@@ -23,15 +23,25 @@ $("#colorSelect").change(function(event) {$("#logo").css("color", colorSelect.va
 
 // add previous color to list - if color selctor changes
 $("#colorSelect").change(function(event) {
-  $(".previouscolor:eq("+prev_index+")").css('background-color', colorSelect.value);
+  $(".previouscolor:eq("+prev_index+")").css(
+    {
+    'background-color': colorSelect.value,
+    'border': "black solid 2px",
+  });
   prev_index++;
   prev_index %= numPrevColorBoxes;
+  $(".previouscolor:eq("+prev_index+")").css('border', "black solid 5px");
 });
 
 $("#resave_button").click(function(event) {
-  $(".previouscolor:eq("+prev_index+")").css('background-color', colorSelect.value);
+  $(".previouscolor:eq("+prev_index+")").css(
+    {
+    'background-color': colorSelect.value,
+    'border': "black solid 2px",
+  });
   prev_index++;
   prev_index %= numPrevColorBoxes;
+  $(".previouscolor:eq("+prev_index+")").css('border', "black solid 5px");
 });
 
 // pick a color from the previous colors list
