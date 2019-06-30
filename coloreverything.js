@@ -18,11 +18,14 @@ $( function() {
 
 var numPrevColorBoxes = $(".previouscolor").length;
 
-// change logo - if color selctor changes
-$("#colorSelect").change(function(event) {$("#logo").css("color", colorSelect.value)});
+// change logo color - if color selctor changed color
+$("#colorSelect").change(function() {$("#logo").css("color", colorSelect.value)});
 
-// add previous color to list - if color selctor changes
-$("#colorSelect").change(function(event) {
+// add previous color to list - if color selctor changed color
+$("#colorSelect").change(BBPrevColorListSet);
+$("#resave_button").click(BBPrevColorListSet);
+
+function BBPrevColorListSet() {
   $(".previouscolor:eq("+prev_index+")").css(
     {
     'background-color': colorSelect.value,
@@ -30,19 +33,10 @@ $("#colorSelect").change(function(event) {
   });
   prev_index++;
   prev_index %= numPrevColorBoxes;
-  $(".previouscolor:eq("+prev_index+")").css('border', "black solid 5px");
-});
-
-$("#resave_button").click(function(event) {
-  $(".previouscolor:eq("+prev_index+")").css(
-    {
-    'background-color': colorSelect.value,
-    'border': "black solid 2px",
-  });
-  prev_index++;
-  prev_index %= numPrevColorBoxes;
-  $(".previouscolor:eq("+prev_index+")").css('border', "black solid 5px");
-});
+  $(".previouscolor:eq("+prev_index+")").css({
+    'border': "white solid 2px",    
+    });
+}
 
 // pick a color from the previous colors list
 $(".previouscolor").click(function(event) {
@@ -61,32 +55,43 @@ $("#cleartext").click(function(event)
     {$(".wrap div").text("")}
 );
 
-function randomColors() { return '#'+ Math.round( 0xffffff * Math.random() ).toString(16).padStart(6, '0') };
-function randomColorsBlue() { return '#'+ Math.round( 0xff * Math.random() ).toString(16).padStart(4, '0') };
+// css random colors functions
+$(document).on('click', '#randomcanvas', function(){
 
-$("#randomcanvas").click(function(event)
-  { 
-    $(".wrap div").css("background-color", randomColors)
+    $(".wrap div").css("background-color", CSSrandomColors) 
 });
 
-$("#bluenight").click(function(event)
-  { 
-    $(".wrap div").css("background-color", randomColorsBlue)
+$(document).on('click', '#bluenight', function(){
+    $(".wrap div").css("background-color", CSSrandomColorsBlue) 
 });
 
-$("#smileycanvas").click(smileycanvasfunc);
-$("#personalisedbutton").click(mySmileycanvasfunc);
-
-function smileycanvasfunc()  { 
-    $(".wrap div:odd").css("color", randomColors);
-    $(".wrap div:odd").text(":)");
+function CSSrandomColors(){
+  return randomColors(0xffffff)
 }
 
-function mySmileycanvasfunc()  { 
-    $(".wrap div:even").css("color", randomColors);
-    $(".wrap div:even").text($("#personalised").val());
+function CSSrandomColorsBlue(){
+  return randomColors(0xff)
 }
-var mySmiley = $("#personalised").val();
+
+function randomColors(rand_color_num) {
+  return '#'+ Math.round( rand_color_num * Math.random() ).toString(16).padStart(4, '0')
+};
+
+$("#smileycanvas").click(CSSSmileyRandomColors);
+$("#personalisedbutton").click(CSSTextRandomColors);
+
+function CSSSmileyRandomColors(){
+  return randomColorText(":)", "odd")
+}
+
+function CSSTextRandomColors(){
+  return randomColorText($("#personalised").val(), "even")
+}
+
+function randomColorText(text, odd_or_even)  { 
+    $(".wrap div:"+odd_or_even+"").css("color", CSSrandomColors);
+    $(".wrap div:"+odd_or_even+"").text(text);
+}
 
 //hover draw testing
 
@@ -109,7 +114,6 @@ function hoverfunction() {
 }
 
 // helper funcs
-
 var hexDigits =["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"]; 
 var hex= function(x) {
   return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
