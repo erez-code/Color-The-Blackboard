@@ -1,8 +1,9 @@
-var defaultColor = "#930024";
+var defaultColor = "#4298f5";
 var colorSelect;
-var prev_index = 0;
+var saved_colors_index = 0;
+var selected_wrap_div = $(".wrap div");
 
-$( '.wrap div' ).mousedown(  function(){
+selected_wrap_div.mousedown(  function(){
   var activeColor = $( '#colorindicator' );
   activeColor.css("color", colorSelect.value);
   var $this = $( this );
@@ -16,7 +17,7 @@ $( function() {
 	colorSelect.select();
 } );
 
-var numPrevColorBoxes = $(".previouscolor").length;
+var numSavedColors = $(".saved_colors").length;
 
 // change logo color - if color selctor changed color
 $("#colorSelect").change(function() {$("#logo").css("color", colorSelect.value)});
@@ -26,81 +27,82 @@ $("#colorSelect").change(BBPrevColorListSet);
 $("#resave_button").click(BBPrevColorListSet);
 
 function BBPrevColorListSet() {
-  $(".previouscolor:eq("+prev_index+")").css(
+  $(".saved_colors:eq("+saved_colors_index+")").css(
     {
-    'background-color': colorSelect.value,
-    'border': "black solid 2px",
-  });
-  prev_index++;
-  prev_index %= numPrevColorBoxes;
-  $(".previouscolor:eq("+prev_index+")").css({
-    'border': "white solid 2px",    
+    'background-color': colorSelect.value, 
+    'box-shadow': "0 0 3px black",
+  	});
+  
+  saved_colors_index++;
+  saved_colors_index %= numSavedColors;
+  
+  $(".saved_colors:eq("+saved_colors_index+")").css({
+    'box-shadow': "0 0 10px black",
     });
 }
 
+//old feature: randomize saved colors
+//$(".saved_colors").css("background-color", CSSrandomColors);
+
 // pick a color from the previous colors list
-$(".previouscolor").click(function(event) {
+$(".saved_colors").click(function() {
   var $this = $( this );
   colorSelect.value = rgb2hex($this.css('background-color'));
 }
 );
 
-$("#clearcanvas").click(function(event)
+$("#clearcanvas").click(function()
   { 
-    $(".wrap div").removeAttr("style");
-    $(".wrap div").text("");
+    selected_wrap_div
+    .removeAttr("style")
+    .text("");
 });
 
-$("#cleartext").click(function(event)
-    {$(".wrap div").text("")}
+$("#cleartext").click(function()
+    {
+    selected_wrap_div.text("")}
 );
 
 // css random colors functions
 $(document).on('click', '#randomcanvas', function(){
-
-    $(".wrap div").css("background-color", CSSrandomColors) 
+    selected_wrap_div.css("background-color", CSSrandomColors) 
 });
 
 $(document).on('click', '#bluenight', function(){
-    $(".wrap div").css("background-color", CSSrandomColorsBlue) 
+    selected_wrap_div.css("background-color", function (){
+  	return randomColors(0xff)}) 
 });
 
 function CSSrandomColors(){
-  return randomColors(0xffffff)
+  return randomColors()
 }
 
-function CSSrandomColorsBlue(){
-  return randomColors(0xff)
-}
-
-function randomColors(rand_color_num) {
+function randomColors(rand_color_num = 0xffffff) {
   return '#'+ Math.round( rand_color_num * Math.random() ).toString(16).padStart(4, '0')
 };
 
-$("#smileycanvas").click(CSSSmileyRandomColors);
-$("#personalisedbutton").click(CSSTextRandomColors);
+// more css random colors functions
+$("#smileycanvas").click(function (){
+  return randomColorText()
+});
 
-function CSSSmileyRandomColors(){
-  return randomColorText(":)", "odd")
-}
-
-function CSSTextRandomColors(){
+$("#personalisedbutton").click(function (){
   return randomColorText($("#personalised").val(), "even")
+});
+
+function randomColorText(text = ":)", odd_or_even = "odd")  { 
+    $(".wrap div:"+odd_or_even+"")
+    .css("color", CSSrandomColors)
+    .text(text)
 }
 
-function randomColorText(text, odd_or_even)  { 
-    $(".wrap div:"+odd_or_even+"").css("color", CSSrandomColors);
-    $(".wrap div:"+odd_or_even+"").text(text);
-}
-
-//hover draw testing
-
+//hover draw 
 //check if hover mode is on//
 var hoverCheck = !hoverCheck;
 hoverCheck = !hoverCheck;
 
 $('#hoverdrawing').click( function() {
-    $( '.wrap div' ).hover( hoverfunction);
+    selected_wrap_div.hover(hoverfunction);
     hoverCheck = !hoverCheck;
 });
 
@@ -110,11 +112,11 @@ $("body").keyup(function(e) {
 
 function hoverfunction() {
     var $this = $( this );
-    if ( hoverCheck ) $this.css( 'background-color',colorSelect.value);
+    if ( hoverCheck ) $this.css('background-color',colorSelect.value);
 }
 
 // helper funcs
-var hexDigits =["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"]; 
+var hexDigits ="0123456789ABCDEF"; 
 var hex= function(x) {
   return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
 }
