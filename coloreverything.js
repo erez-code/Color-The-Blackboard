@@ -4,7 +4,7 @@ var mirror_flag = 0;
 var saved_colors_index = 0;
 var selected_wrap_div = $(".wrap div");
 
-selected_wrap_div.mousedown(  function(){
+selected_wrap_div.mousedown( function(){
   var activeColor = $( '#colorindicator' );
   activeColor.css("color", colorSelect.value);
   var $this = $( this );
@@ -13,10 +13,7 @@ selected_wrap_div.mousedown(  function(){
 
   if (mirror_flag)
   {
-	  var cur_index_found = $this.index();
-	  var cur_height = Math.floor(cur_index_found / 80);
-	  var index_per_row = (cur_index_found - (80 * cur_height));
-	  var other_side = (80 * cur_height) + 79 - index_per_row;
+	  var other_side = calcMirroredBox($this);
 
 	  var $this = $(".wrap div:eq("+other_side+")");
   	  var isBlack = $this.css( 'background-color' ) === activeColor.css("color");
@@ -133,14 +130,23 @@ function hoverfunction() {
   	
   	if (mirror_flag && hoverCheck)
  	{
-	  var cur_index_found = $this.index();
-	  var cur_height = Math.floor(cur_index_found / 80);
-	  var index_per_row = (cur_index_found - (80 * cur_height));
-	  var other_side = (80 * cur_height) + 79 - index_per_row;
+	  var other_side = calcMirroredBox($this);
 
 	  var $this = $(".wrap div:eq("+other_side+")");
   	  $this.css('background-color', colorSelect.value);
   	}    
+}
+
+function calcMirroredBox(current_box) {
+	  
+	var boxes_per_line = 80;
+	var cur_index_found = current_box.index();
+	var cur_height = Math.floor(cur_index_found / boxes_per_line);
+	var end_cur_line = boxes_per_line * cur_height;
+	var cur_index_relative_to_row = (cur_index_found - end_cur_line);
+	var other_side = end_cur_line - cur_index_relative_to_row + (boxes_per_line - 1);
+
+	return other_side;
 }
 
 // helper funcs
