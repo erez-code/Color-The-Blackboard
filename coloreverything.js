@@ -1,5 +1,6 @@
 var defaultColor = "#4298f5";
 var colorSelect;
+var mirror_flag = 0;
 var saved_colors_index = 0;
 var selected_wrap_div = $(".wrap div");
 
@@ -9,7 +10,20 @@ selected_wrap_div.mousedown(  function(){
   var $this = $( this );
   var isBlack = $this.css( 'background-color' ) === activeColor.css("color");
   isBlack? $this.removeAttr("style") : $this.css('background-color', colorSelect.value);
+
+  if (mirror_flag)
+  {
+	  var cur_index_found = $this.index();
+	  var cur_height = Math.floor(cur_index_found / 80);
+	  var index_per_row = (cur_index_found - (80 * cur_height));
+	  var other_side = (80 * cur_height) + 79 - index_per_row;
+
+	  var $this = $(".wrap div:eq("+other_side+")");
+  	  var isBlack = $this.css( 'background-color' ) === activeColor.css("color");
+  	  isBlack? $this.removeAttr("style") : $this.css('background-color', colorSelect.value);
+  }
 });
+
 
 $( function() {
 	colorSelect = $("#colorSelect")[0];
@@ -33,16 +47,19 @@ function BBPrevColorListSet() {
     'box-shadow': "0 0 3px black",
   	});
   
-  saved_colors_index++;
-  saved_colors_index %= numSavedColors;
+  	saved_colors_index++;
+  	saved_colors_index %= numSavedColors;
   
-  $(".saved_colors:eq("+saved_colors_index+")").css({
+ 	 $(".saved_colors:eq("+saved_colors_index+")").css({
     'box-shadow': "0 0 10px black",
     });
 }
 
 //old feature: randomize saved colors
 //$(".saved_colors").css("background-color", CSSrandomColors);
+
+$("#mirrored_drawing").click(function() {
+	mirror_flag = !mirror_flag});
 
 // pick a color from the previous colors list
 $(".saved_colors").click(function() {
@@ -113,6 +130,17 @@ $("body").keyup(function(e) {
 function hoverfunction() {
     var $this = $( this );
     if ( hoverCheck ) $this.css('background-color',colorSelect.value);
+  	
+  	if (mirror_flag && hoverCheck)
+ 	{
+	  var cur_index_found = $this.index();
+	  var cur_height = Math.floor(cur_index_found / 80);
+	  var index_per_row = (cur_index_found - (80 * cur_height));
+	  var other_side = (80 * cur_height) + 79 - index_per_row;
+
+	  var $this = $(".wrap div:eq("+other_side+")");
+  	  $this.css('background-color', colorSelect.value);
+  	}    
 }
 
 // helper funcs
