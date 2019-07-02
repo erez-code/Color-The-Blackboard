@@ -38,6 +38,21 @@ hr {
     background-color: #7abc01;
 }
 
+.button_purple {
+    cursor: pointer;
+    font-size: 16px;
+    font-family: Open Sans;
+    background-color: purple;
+    border-bottom: 3px solid black;
+    border: 1px white solid;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.button_purple:hover {
+    background-color: black;
+}
+
 #colorSelect {
     background-color: white;
     border-radius: 4px;
