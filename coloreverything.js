@@ -58,6 +58,21 @@ function BBPrevColorListSet() {
 $("#mirrored_drawing").click(function() {
 	mirror_flag = !mirror_flag});
 
+$("#show_grid").click(function() {
+
+	if (selected_wrap_div.css("border-color") != "rgb(48, 48, 48)")
+	{	
+		selected_wrap_div
+		.css("border-style","solid")
+		.css("border-color","rgb(48, 48, 48)")
+		.css("border-width","0px 0px 1px 1px")
+	}
+	else
+	{
+		selected_wrap_div.css("border", "none")
+	}
+});
+
 // pick a color from the previous colors list
 $(".saved_colors").click(function() {
   var $this = $( this );
@@ -73,9 +88,9 @@ $("#clearcanvas").click(function()
 });
 
 $("#cleartext").click(function()
-    {
-    selected_wrap_div.text("")}
-);
+  {
+    selected_wrap_div.text("")
+ });
 
 // css random colors functions
 $(document).on('click', '#randomcanvas', function(){
