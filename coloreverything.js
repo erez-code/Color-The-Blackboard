@@ -9,7 +9,7 @@ selected_wrap_div.mousedown( function(){
   activeColor.css("color", colorSelect.value);
   var $this = $( this );
   var isBlack = $this.css( 'background-color' ) === activeColor.css("color");
-  isBlack? $this.removeAttr("style") : $this.css('background-color', colorSelect.value);
+  isBlack? $this.css("background", "none") : $this.css('background-color', colorSelect.value);
 
   if (mirror_flag)
   {
@@ -17,7 +17,7 @@ selected_wrap_div.mousedown( function(){
 
 	  var $this = $(".wrap div:eq("+other_side+")");
   	  var isBlack = $this.css( 'background-color' ) === activeColor.css("color");
-  	  isBlack? $this.removeAttr("style") : $this.css('background-color', colorSelect.value);
+  	  isBlack? $this.css("background", "none") : $this.css('background-color', colorSelect.value);
   }
 });
 
@@ -82,9 +82,19 @@ $(".saved_colors").click(function() {
 
 $("#clearcanvas").click(function()
   { 
+    var is_restore_grid = selected_wrap_div.css("border-color") == "rgb(48, 48, 48)";
+
     selected_wrap_div
     .removeAttr("style")
     .text("");
+
+    if (is_restore_grid)
+	{	
+		selected_wrap_div
+		.css("border-style","solid")
+		.css("border-color","rgb(48, 48, 48)")
+		.css("border-width","0px 0px 1px 1px")
+	}
 });
 
 $("#cleartext").click(function()
