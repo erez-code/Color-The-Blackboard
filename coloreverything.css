@@ -27,15 +27,15 @@ hr {
     cursor: pointer;
     font-size: 16px;
     font-family: Open Sans;
-    background-color: #8bd602;
+    background-color: #f1f1f1;
     border-bottom: 3px solid black;
-    border: 1px white solid;
-    color: #fff;
-    border-radius: 4px;
+    border: 1px lightgray solid;
+    color: black;
+
 }
 
 .button_green:hover {
-    background-color: #7abc01;
+    background-color: #8bd602;
 }
 
 .button_purple {
@@ -44,9 +44,8 @@ hr {
     font-family: Open Sans;
     background-color: purple;
     border-bottom: 3px solid black;
-    border: 1px white solid;
-    color: #fff;
-    border-radius: 4px;
+    border: 1px lightgray solid;
+    color: white;
 }
 
 .button_purple:hover {
